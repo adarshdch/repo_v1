@@ -1,0 +1,7 @@
+﻿<Form>
+	<HtmlForm table="Page">
+		<Field sid="PageCode" type="text" label="Page Code" required="true"/>
+		<Field sid="RelativePath" type="text" label="Relative Path" required="true"/>
+		<Button type="submit" label="Submit"/>
+	</HtmlForm>
+</Form>

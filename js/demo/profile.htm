@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Profile - Dijit Form With All Controls</title>
+	<link rel="stylesheet" href="/js/lib/dojo/1.10.4/dijit/themes/claro/claro.css">
+
+	<script>dojoConfig = { parseOnLoad: true }</script>
+	<script src='/js/lib/dojo/1.10.4/dojo/dojo.js'></script>
+
+	<script>
+		require([
+			"dojo/parser",
+			"sab/form/FormDriver",
+			"dijit/form/Button",
+			"dijit/form/ValidationTextBox",
+			"dijit/form/DateTextBox",
+			"dijit/form/RadioButton",
+			"dijit/form/CheckBox",
+			"dijit/form/DropDownButton",
+			"dijit/form/ComboBox",
+			"dijit/TooltipDialog",
+			"dojo/store/Memory"
+		]);
+	</script>
+</head>
+<body class="claro">
+	<div data-dojo-type="sab/form/FormDriver" id="myForm" data-dojo-id="myForm" enctype="multipart/form-data" action="postpage.htm" method="get">
+		<script type="dojo/on" data-dojo-event="reset">
+			return confirm('Press OK to reset widget values');
+		</script>
+
+		
+
+		<table style="border: 1px solid #9f9f9f;" cellspacing="10">
+			<tr>
+				<td>&nbsp;</td>
+				<td>
+					<div data-dojo-type="dijit/form/DropDownButton">
+						<span>Login</span>
+						<div data-dojo-type="dijit/TooltipDialog">
+							<label for="userid">User Id:</label> <input data-dojo-type="dijit/form/TextBox" id="userid" name="userid"><br>
+							<label for="password">Password</label> <input data-dojo-type="dijit/form/TextBox" type="password" id="password" name="password"><br>
+							<button data-dojo-type="dijit/form/Button" type="submit">Login</button>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="name">Name:</label>
+				</td>
+				<td>
+					<input type="text" id="name" name="name" required="true" data-dojo-type="dijit/form/ValidationTextBox" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="name">Gender:</label>
+				</td>
+				<td>
+					<input type="radio" data-dojo-type="dijit/form/RadioButton" name="gender" id="male" checked value="male" /> <label for="male">Male</label>
+					<input type="radio" data-dojo-type="dijit/form/RadioButton" name="gender" id="female" value="female" /> <label for="female">Female</label>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="name">Hobby:</label>
+				</td>
+				<td>
+					<input id="reading" name="hobby" data-dojo-type="dijit/form/CheckBox" value="reading" checked onchange="alert('onChange called with parameter = ' + arguments[0] + ', and widget value = ' + this.get('value'))" /> <label for="reading">Reading</label>
+					<input id="cricket" name="hobby" data-dojo-type="dijit/form/CheckBox" value="cricket" /> <label for="cricket">Cricket</label>
+					<input id="netsurfing" name="hobby" data-dojo-type="dijit.form.CheckBox" value="netsurfing" data-dojo-props="checked: false"><label for="netsurfing">Net Surfing</label>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="dob">Date of birth:</label>
+				</td>
+				<td>
+					<input type="text" id="dob" name="dob" data-dojo-type="dijit/form/DateTextBox" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="continent">Continent</label>
+				</td>
+				<td>
+					<div data-dojo-type="dojo/store/Memory" data-dojo-id="continentStore" data-dojo-props="data: [{id: 'asia', name: 'Asia'}, {id: 'africa', name: 'Africa'}]">
+					</div>
+					<input data-dojo-type="dijit/form/ComboBox" value="asia" data-dojo-props="store:continentStore, searchAttr:'name'" name="continent" id="continent" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="country">Country</label>
+				</td>
+				<td>
+					<select data-dojo-type="dijit/form/ComboBox" id="country" name="country">
+						<option>Afghanistan</option>
+						<option selected>India</option>
+						<option>United States</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="state">State</label>
+				</td>
+				<td>
+					<select name="state" data-dojo-type="dijit/form/Select" style="width: 150px;">
+						<option value="BIH">Bihar</option>
+						<option value="BAN" selected="selected">Bangal</option>
+						<option value="DEL">Delhi</option>
+						<option value="HAR">Haryana</option>
+						<option value="JAM">Jammu</option>
+					</select>
+				</td>
+			</tr>
+		</table>
+
+		<button data-dojo-type="dijit/form/Button" type="button" onclick="console.log(myForm.getValues())">Get Values from form!</button>
+		<button data-dojo-type="dijit/form/Button" type="submit" name="submitButton" value="Submit">Submit</button>
+		<button data-dojo-type="dijit/form/Button" type="reset">Reset</button>
+	</div>
+</body>
+</html>
