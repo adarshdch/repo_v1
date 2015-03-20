@@ -1,5 +1,5 @@
 ﻿
-namespace SAB.BLL.Entities.Page
+namespace SAB.BLL.Entities.Pages
 {
 	public class PageResponse
 	{

@@ -1,7 +1,8 @@
 ﻿
 using System.Web.Mvc;
-using SAB.BLL.Entities.Page;
+using SAB.BLL.Entities.Pages;
 using SAB.BLL.Manager;
+using SAB.Entities;
 using SAB.Infra.Entities;
 
 namespace SAB.Interface.Controllers
@@ -19,10 +20,24 @@ namespace SAB.Interface.Controllers
 		[ActionName("get")]
 		public string Get(string code)
 		{
-			var aRequest = new CusRequest<PageRequest>() {};
-			var aResponse = new CusResponse<PageResponse>() {};
+			var aRequest = new CusRequest<PageRequest>()
+			{
+				Data = new PageRequest()
+				{
+					PageCode = code,
+					ContentType = ResponseContentType.FullHtml
+				}
+			};
+
+			var aResponse = new CusResponse<PageResponse>()
+			{
+				Status = TaskStatus.Success,
+				Data = new PageResponse()
+			};
+
 			_pageManager.Process(aRequest, aResponse);
-			return aResponse.Data.Result;
+
+			return aResponse.Status.Equals(TaskStatus.Failure) ? aResponse.Message : aResponse.Data.Result;
 		}
 
 		[HttpPost]

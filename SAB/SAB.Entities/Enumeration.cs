@@ -9,14 +9,14 @@ namespace SAB.Entities
 		Report
 	}
 
-	public enum ContentType
+	public enum ResponseContentType
 	{
 		Undefined,
 		Page,
 		Text,
 		FullXml,
 		Script,
-		Html,
+		FullHtml,
 		Json
 	}
 

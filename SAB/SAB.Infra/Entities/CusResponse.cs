@@ -6,5 +6,7 @@ namespace SAB.Infra.Entities
 		public T Data { get; set; }
 
 		public TaskStatus Status { get; set; }
+
+		public string Message { get; set; }
 	}
 }

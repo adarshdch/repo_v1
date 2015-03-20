@@ -1,5 +1,5 @@
 ﻿
-using SAB.BLL.Entities.Page;
+using SAB.BLL.Entities.Pages;
 using SAB.BLL.Repository.Page;
 using SAB.Infra.Entities;
 

@@ -58,9 +58,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLLUnityExtension.cs" />
-    <Compile Include="Entities\Page\FacadePageProcessor.cs" />
-    <Compile Include="Entities\Page\PageRequest.cs" />
-    <Compile Include="Entities\Page\PageResponse.cs" />
+    <Compile Include="Entities\Pages\BaseXmlPageProcessor.cs" />
+    <Compile Include="Entities\Pages\FacadePageProcessor.cs" />
+    <Compile Include="Entities\Pages\FormXmlPageProcessor.cs" />
+    <Compile Include="Entities\Pages\IPageProcessor.cs" />
+    <Compile Include="Entities\Pages\PageRequest.cs" />
+    <Compile Include="Entities\Pages\PageResponse.cs" />
     <Compile Include="Manager\IPageManager.cs" />
     <Compile Include="Manager\PageManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,6 +72,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\SAB.Entities\SAB.Entities.csproj">
+      <Project>{040cee42-2052-430f-ab56-ae7a0389deb5}</Project>
+      <Name>SAB.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SAB.Framework.DbRepository.Ef6\SAB.Framework.DbRepository.Ef6.csproj">
       <Project>{f68a1d19-93fb-47c1-a22b-42bea3e4fd8c}</Project>
       <Name>SAB.Framework.DbRepository.Ef6</Name>
