@@ -20,7 +20,8 @@ namespace SAB.Interface.Controllers
 		public string Get(string code)
 		{
 			var aRequest = new CusRequest<PageRequest>() {};
-			var aResponse = _pageManager.Get(aRequest);
+			var aResponse = new CusResponse<PageResponse>() {};
+			_pageManager.Process(aRequest, aResponse);
 			return aResponse.Data.Result;
 		}
 

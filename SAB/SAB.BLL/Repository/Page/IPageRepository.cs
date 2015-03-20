@@ -6,6 +6,6 @@ namespace SAB.BLL.Repository.Page
 {
 	public interface IPageRepository
 	{
-		CusResponse<PageResponse> Get(CusRequest<PageRequest> thePageRequest);
+		bool Get(CusRequest<PageRequest> thePageRequest, CusResponse<PageResponse> thResponse);
 	}
 }

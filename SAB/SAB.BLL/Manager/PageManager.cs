@@ -14,9 +14,10 @@ namespace SAB.BLL.Manager
 			_pageRepository = thPageRepository;
 		}
 
-		public CusResponse<PageResponse> Get(CusRequest<PageRequest> thePageRequest)
+
+		public bool Process(CusRequest<PageRequest> theRequest, CusResponse<PageResponse> theResponse)
 		{
-			return _pageRepository.Get(thePageRequest);
+			return _pageRepository.Get(theRequest, theResponse);
 		}
 	}
 }

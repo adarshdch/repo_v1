@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLLUnityExtension.cs" />
+    <Compile Include="Entities\Page\FacadePageProcessor.cs" />
     <Compile Include="Entities\Page\PageRequest.cs" />
     <Compile Include="Entities\Page\PageResponse.cs" />
     <Compile Include="Manager\IPageManager.cs" />

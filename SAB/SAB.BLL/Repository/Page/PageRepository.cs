@@ -6,17 +6,12 @@ namespace SAB.BLL.Repository.Page
 {
 	public class PageRepository : IPageRepository
 	{
-		
-		public CusResponse<PageResponse> Get(CusRequest<PageRequest> thePageRequest)
+
+		public bool Get(CusRequest<PageRequest> theRequest, CusResponse<PageResponse> theResponse)
 		{
-			return new CusResponse<PageResponse>()
-			{
-				Status = TaskStatus.Success,
-				Data = new PageResponse()
-				{
-					Result = "This is page response"
-				}
-			};
+			var aPageProcessor = new FacadePageProcessor();
+
+			return aPageProcessor.Process(theRequest, theResponse);
 		}
 	}
 }

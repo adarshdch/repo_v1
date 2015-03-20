@@ -190,10 +190,6 @@
       <Project>{bb0cac15-83cd-4895-8862-0c92678d840a}</Project>
       <Name>SAB.Infra</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SAB.PageProcessor\SAB.PageProcessor.csproj">
-      <Project>{5efad3ff-79f0-43e5-9b7c-5393bc2c7e1d}</Project>
-      <Name>SAB.PageProcessor</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

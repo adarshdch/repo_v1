@@ -6,6 +6,6 @@ namespace SAB.BLL.Manager
 {
 	public interface IPageManager
 	{
-		CusResponse<PageResponse> Get(CusRequest<PageRequest> thePageRequest);
+		bool Process(CusRequest<PageRequest> theRequest, CusResponse<PageResponse> theResponse );
 	}
 }
