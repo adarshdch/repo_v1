@@ -3,10 +3,13 @@ using SAB.Infra.Entities;
 
 namespace SAB.BLL.Entities.Pages
 {
-	public class FormXmlPageProcessor : BaseXmlPageProcessor
+	public class HtmlFormNodeProcessor : XmlPageNodeProcessor
 	{
+		
 		public override bool Process(CusRequest<PageRequest> theRequest, CusResponse<PageResponse> theResponse)
 		{
+
+
 			return true;
 		}
 	}

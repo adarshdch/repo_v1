@@ -1,8 +1,7 @@
-﻿
-using SAB.BLL.Entities.Pages;
+﻿using SAB.BLL.Entities.Pages;
 using SAB.Infra.Entities;
 
-namespace SAB.BLL.Repository.Page
+namespace SAB.BLL.Repository.Pages
 {
 	public interface IPageRepository
 	{

@@ -1,6 +1,6 @@
 ﻿
 using SAB.BLL.Entities.Pages;
-using SAB.BLL.Repository.Page;
+using SAB.BLL.Repository.Pages;
 using SAB.Infra.Entities;
 
 namespace SAB.BLL.Manager

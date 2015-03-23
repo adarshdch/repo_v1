@@ -2,14 +2,17 @@
 	<xsl:param name="PageCode" select="PageCode"/>
 	<xsl:param name="ContentType" select="ContentType"/>
 
-	<xsl:output omit-xml-declaration="yes" indent="yes" cdata-section-elements=""/>
+	<xsl:output omit-xml-declaration="yes" indent="yes" cdata-section-elements="" method="xml"/>
 
 	<xsl:include href="http://localhost/static\stylesheets\master\v1\Dojo_Field.xsl" />
 	
 	<xsl:template match="/">
 		<xsl:choose>
-			<xsl:when test="$ContentType='Html'">
+			<xsl:when test="$ContentType='FullHtml'">
 				<xsl:call-template name="FullHtml"/>
+			</xsl:when>
+			<xsl:when test="$ContentType='FullXml'">
+				<xsl:call-template name="FullXml"/>
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:value-of select="$ContentType"/>
@@ -53,10 +56,16 @@
 		</html>
 	</xsl:template>
 
+	
+		
 	<xsl:template name="HtmlForm" match="HtmlForm">
 		<div data-dojo-type="sab/form/Form" enctype="multipart/form-data" action="">
 			<xsl:apply-templates/>
 		</div>
 	</xsl:template>
 	
+	<xsl:template name="FullXml">
+		<xsl:copy-of select="."/>
+	</xsl:template>
+
 </xsl:stylesheet>

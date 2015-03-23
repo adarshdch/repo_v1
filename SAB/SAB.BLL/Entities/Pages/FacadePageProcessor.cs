@@ -9,19 +9,22 @@ namespace SAB.BLL.Entities.Pages
 	{
 		public bool Process(CusRequest<PageRequest> theRequest, CusResponse<PageResponse> theResponse)
 		{
-			var aPageProcessor = ResolvePageProcessor(theRequest.Data.Page.PageType);
+			XmlBasePageProcessor aPageProcessor = ResolvePageProcessor(theRequest.Data.Page.PageType);
 			
-			return aPageProcessor.Process(theRequest, theResponse);
+			aPageProcessor.Process(theRequest, theResponse);
+			theResponse.Data.Result = aPageProcessor.TransformXmlToHtml(theRequest);
+
+			return true;
 		}
 
-		private IPageProcessor ResolvePageProcessor(PageType thePageType)
+		private static XmlBasePageProcessor ResolvePageProcessor(PageType thePageType)
 		{
-			IPageProcessor aPageProcessor = null;
+			XmlBasePageProcessor aPageProcessor = null;
 
 			switch (thePageType)
 			{
 				case PageType.Form:
-					aPageProcessor = new FormXmlPageProcessor();
+					aPageProcessor = new XmlFormPageProcessor();
 					break;
 				default:
 					throw new InvalidEnumArgumentException(typeof(PageType).Name, 1, typeof(PageType));

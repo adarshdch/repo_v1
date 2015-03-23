@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.Practices.Unity;
 using SAB.BLL.Manager;
-using SAB.BLL.Repository.Page;
+using SAB.BLL.Repository.Pages;
 
 namespace SAB.BLL
 {

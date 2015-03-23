@@ -24,8 +24,9 @@ namespace SAB.Interface.Controllers
 			{
 				Data = new PageRequest()
 				{
+					OrgCode = "Master",
 					PageCode = code,
-					ContentType = ResponseContentType.FullHtml
+					ContentType = ResponseContentType.FullXml
 				}
 			};
 
