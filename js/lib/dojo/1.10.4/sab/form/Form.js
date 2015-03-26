@@ -50,19 +50,20 @@
 			}
 		},
 
-		onSubmit: function (/*Event?*/ /*===== e =====*/) {
+		onSubmit: function (e/*Event?*/ /*===== e =====*/) {
 			
 			var formValues = this.getValues();
+			formValues.Operation = "Insert";
 			var that = this;
 			
 			require(["dojo/request"], function (request) {
-				request(that.sid, {
+				request("ttt", {
 					data: formValues,
 					method: "post",
 					handleAs: "json"
 				}).then(function (data) {
-					if (data.IsSuccess)
-						alert("Posted successfully");
+					if (data.Status == 'Success')
+						alert(data.Message);
 					else
 						alert("Please try again");
 				}, function (err) {
@@ -86,7 +87,7 @@
 			return this.isValid(); // Boolean
 		},
 
-		submit: function () {
+		submit: function (t) {
 			// summary:
 			//		programmatically submit form if and only if the `onSubmit` returns true
 			if (!(this.onSubmit() === false)) {

@@ -1,5 +1,8 @@
 ﻿
+using System.Net.Http.Headers;
 using System.Web.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using SAB.BLL.Entities.Pages;
 using SAB.BLL.Manager;
 using SAB.Entities;
@@ -17,16 +20,17 @@ namespace SAB.Interface.Controllers
 		}
 
 		[HttpGet]
-		[ActionName("get")]
-		public string Get(string code)
+		[ActionName("v1")]
+		public string Get(string pagecode)
 		{
 			var aRequest = new CusRequest<PageRequest>()
 			{
 				Data = new PageRequest()
 				{
+					Operation = DbOperation.Select,
 					OrgCode = "Master",
-					PageCode = code,
-					ContentType = ResponseContentType.FullXml
+					PageCode = pagecode,
+					ContentType = ResponseContentType.FullHtml
 				}
 			};
 
@@ -42,10 +46,21 @@ namespace SAB.Interface.Controllers
 		}
 
 		[HttpPost]
-		[ActionName("post")]
-		public string Post()
+		[ActionName("v1")]
+		public string Post(string pagecode)
 		{
-			return "Posted successfully!";
+
+			var aResponse = new CusResponse<PageResponse>()
+			{
+				Data = new PageResponse()
+				{
+					Result = "Result output!"
+				},
+				Status = TaskStatus.Success,
+				Message = "Successfully posted!"
+			};
+
+			return JsonConvert.SerializeObject(aResponse, Formatting.Indented, new StringEnumConverter());
 		}
 
 	}

@@ -14,24 +14,33 @@ namespace SAB.DAL.EntLib
 			aDataSetXml.Append("<DataSet>");
 			foreach (DataTable theTable in theDataSet.Tables)
 			{
-				aDataSetXml.Append("<Table>");
-				foreach (DataRow theRow in theTable.Rows)
-				{
-					aDataSetXml.Append("<Row>");
-					foreach (var theField in theRow.ItemArray)
-					{
-						aDataSetXml.Append("<Field>");
-						aDataSetXml.Append(theField);
-						aDataSetXml.Append("</Field>");
-					}
-					aDataSetXml.Append("</Row>");
-				}
+				aDataSetXml.Append(theTable.XmlElement());
 				aDataSetXml.Append("</Table>");
-
 			}
 			aDataSetXml.Append("</DataSet>");
 
 			return XElement.Parse(aDataSetXml.ToString());
+		}
+
+		public static XElement XmlElement(this DataTable theDataTable)
+		{
+			var aDataTableXml = new StringBuilder();
+
+			aDataTableXml.Append("<Table>");
+			foreach (DataRow theRow in theDataTable.Rows)
+			{
+				aDataTableXml.Append("<Row>");
+				foreach (var theField in theRow.ItemArray)
+				{
+					aDataTableXml.Append("<Col>");
+					aDataTableXml.Append(theField);
+					aDataTableXml.Append("</Col>");
+				}
+				aDataTableXml.Append("</Row>");
+			}
+			aDataTableXml.Append("</Table>");
+
+			return XElement.Parse(aDataTableXml.ToString());
 		}
 	}
 }

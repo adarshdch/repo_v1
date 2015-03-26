@@ -5,7 +5,7 @@
 	<xsl:output omit-xml-declaration="yes" indent="yes" cdata-section-elements="" method="xml"/>
 
 	<xsl:include href="http://localhost/static\stylesheets\master\v1\Dojo_Field.xsl" />
-	
+
 	<xsl:template match="/">
 		<xsl:choose>
 			<xsl:when test="$ContentType='FullHtml'">
@@ -17,7 +17,7 @@
 			<xsl:otherwise>
 				<xsl:value-of select="$ContentType"/>
 				<xsl:text>:Invalid ContentType has been provided.</xsl:text>
-			</xsl:otherwise>				
+			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
 
@@ -37,6 +37,7 @@
 					"dojo/parser",
 					"sab/form/Form",
 					"dijit/Fieldset",
+					"dijit/registry",
 					"dijit/form/Button",
 					"dijit/form/ValidationTextBox",
 					"dijit/form/DateTextBox",
@@ -56,14 +57,23 @@
 		</html>
 	</xsl:template>
 
-	
-		
+
+
 	<xsl:template name="HtmlForm" match="HtmlForm">
 		<div data-dojo-type="sab/form/Form" enctype="multipart/form-data" action="">
-			<xsl:apply-templates/>
+			<xsl:choose>
+				<xsl:when test="@display='inline'">
+					<xsl:apply-templates/>
+				</xsl:when>
+				<xsl:otherwise>
+					<table>
+						<xsl:apply-templates/>
+					</table>
+				</xsl:otherwise>
+			</xsl:choose>
 		</div>
 	</xsl:template>
-	
+
 	<xsl:template name="FullXml">
 		<xsl:copy-of select="."/>
 	</xsl:template>

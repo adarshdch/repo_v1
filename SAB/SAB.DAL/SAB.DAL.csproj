@@ -58,7 +58,6 @@
   <ItemGroup>
     <Compile Include="EntLib\DbExtensions.cs" />
     <Compile Include="EntLib\DbFactory.cs" />
-    <Compile Include="EntLib\DbProviderFactory.cs" />
     <Compile Include="Ef6\MasterDbContext.cs" />
     <Compile Include="Ef6\OrgDbContextFactory.cs" />
     <Compile Include="EntLib\OrgDatabase.cs" />

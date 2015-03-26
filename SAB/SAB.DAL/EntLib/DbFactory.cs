@@ -1,29 +1,27 @@
 ﻿
 using Microsoft.Practices.EnterpriseLibrary.Data;
+using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 
 namespace SAB.DAL.EntLib
 {
-	public static class DbFactory
+	public class DbFactory
 	{
+		private static readonly DatabaseProviderFactory DbProviderFactory;
+
 		static DbFactory()
 		{
-			var aFactory = new DatabaseProviderFactory();
-			DatabaseFactory.SetDatabaseProviderFactory(aFactory);
+			DbProviderFactory = new DatabaseProviderFactory();
 		}
 
-		public static Database GetMasterDatabase()
+		public static Database GetDatabase(string theConnnectionStringName)
 		{
-			return GetMasterDatabase("MasterDb");
+			return DbProviderFactory.Create(theConnnectionStringName);
 		}
 
-		public static Database GetMasterDatabase(string theConnectionStringName)
-		{
-			return DatabaseFactory.CreateDatabase(theConnectionStringName);
-		}
 
-		public static Database GetOrgDatabase(string theConnectionStringName)
+		public static Database GetOrgDatabase(string theOrgCode)
 		{
-			return DatabaseFactory.CreateDatabase(theConnectionStringName);
+			return DbProviderFactory.Create(string.Format("{0}Db", theOrgCode));
 		}
 	}
 }

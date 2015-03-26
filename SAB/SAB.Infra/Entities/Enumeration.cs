@@ -8,4 +8,12 @@ namespace SAB.Infra.Entities
 		Success
 	}
 
+	public enum DbOperation
+	{
+		Select,
+		Insert,
+		Update,
+		Delete
+	}
+
 }

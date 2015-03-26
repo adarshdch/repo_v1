@@ -15,17 +15,24 @@ namespace SAB.BLL.Entities.Pages
 		
 		public override bool Process(CusRequest<PageRequest> theRequest, CusResponse<PageResponse> theResponse)
 		{
-			var aHtmlForms = theRequest.Data.PageDocument.XPathSelectElements("//HtmlForm");
-			aHtmlForms.ForEach(ProcessHtmlForm);
-			var db = DbFactory.GetMasterDatabase();
+			var aHtmlForms = theRequest.Data.PageDocument.XPathSelectElements("//HtmlForm").ToList();
 			
-			var t = db.ExecuteDataSet(CommandType.Text, aHtmlForms.First().Attribute("query").Value);
-			var s = t.XmlElement();
-			aHtmlForms.First().Add(s);
+			aHtmlForms.ForEach(ProcessHtmlFormQuery);
+		
+			//TODO Implement this for all HtmlForms
+			var aDataSet = OrgDatabase.SelectQuery(theRequest.Data.OrgCode, aHtmlForms.First().Attribute("query").Value);
+
+			for (var count = 0; count < aHtmlForms.Count(); count++)
+			{
+				var aTable = aDataSet.Tables[count];
+				var aHtmlFormFields = aHtmlForms[0].Elements("Field");
+				aHtmlFormFields.ForEach(theField => theField.SetAttributeValue("value", aTable.Rows[0][theField.Attribute("sid").Value]));
+			}
+
 			return true;
 		}
 
-		private void ProcessHtmlForm(XElement theHtmlForm)
+		private void ProcessHtmlFormQuery(XElement theHtmlForm)
 		{
 			if (theHtmlForm.Attribute("query") != null && string.IsNullOrWhiteSpace(theHtmlForm.Attribute("query").Value))
 				return;
