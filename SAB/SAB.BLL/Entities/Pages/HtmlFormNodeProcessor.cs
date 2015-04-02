@@ -1,5 +1,4 @@
 ﻿
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
@@ -15,6 +14,12 @@ namespace SAB.BLL.Entities.Pages
 		
 		public override bool Process(CusRequest<PageRequest> theRequest, CusResponse<PageResponse> theResponse)
 		{
+
+			if (string.IsNullOrWhiteSpace(theRequest.Data.RecordKey))
+			{
+				return true;
+			}
+
 			var aHtmlForms = theRequest.Data.PageDocument.XPathSelectElements("//HtmlForm").ToList();
 			
 			aHtmlForms.ForEach(ProcessHtmlFormQuery);

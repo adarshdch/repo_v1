@@ -13,7 +13,7 @@ namespace SAB.Interface
 			routes.MapRoute(
 				name: "Default",
 				url: "{controller}/{action}/{pagecode}",
-				defaults: new {controller = "Page", action = "v1", pagecode = UrlParameter.Optional}
+				defaults: new {controller = "Page", action = "v1"}
 			);
 		}
 	}

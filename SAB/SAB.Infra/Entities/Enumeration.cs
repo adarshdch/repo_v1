@@ -8,12 +8,11 @@ namespace SAB.Infra.Entities
 		Success
 	}
 
-	public enum DbOperation
+	public enum Step
 	{
-		Select,
-		Insert,
-		Update,
-		Delete
+		Add = 1,
+		Update = 2,
+		Delete = 3
 	}
 
 }

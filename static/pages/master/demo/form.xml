@@ -1,9 +1,14 @@
 ﻿<Form>
+	<Workflow>
+		<Step sid="1" name="Add"/>
+		<Step sid="2" name="Update"/>
+		<Step sid="3" name="Delete"/>
+	</Workflow>
 	<HtmlForm sid="Page" query="select" table="Page">
 		<Field sid="PageCode" type="text" label="Page Code" required="true"/>
 		<Field sid="RelativePath" type="text" label="Relative Path" required="true"/>
 		<Buttons>
-			<Button  label="Add" event="click">
+			<Button  label="Add" event="click" renderinsteps="1">
 				<Script>
 					<![CDATA[
 					for(var count=0; count < 3; count++)
@@ -13,8 +18,8 @@
 					]]>
 				</Script>
 			</Button>
-			<Button  label="Update" />
-			<Button  label="Delete" />
+			<Button  label="Update" renderinsteps="2"/>
+			<Button  label="Delete" renderinsteps="2,3"/>
 		</Buttons>
 	</HtmlForm>
 </Form>

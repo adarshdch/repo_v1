@@ -2,7 +2,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 using SAB.Entities;
-using SAB.Infra.Entities;
 
 namespace SAB.BLL.Entities.Pages
 {
@@ -14,7 +13,7 @@ namespace SAB.BLL.Entities.Pages
 			OrgCode = "Master";
 		}
 
-		public DbOperation Operation { get; set; }
+		public string Step { get; set; }
 
 		public string OrgCode { get; set; }
 
@@ -28,6 +27,10 @@ namespace SAB.BLL.Entities.Pages
 		public XDocument PageDocument { get; set; }
 
 		public string Template { get; set; }
-		
+
+
+		public Method HttpMethod { get; set; }
+
+		public string RecordKey { get; set; }
 	}
 }

@@ -1,6 +1,8 @@
 ﻿<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-	<xsl:template name="Field" match="Field">
+	<xsl:include href="http://localhost/static\stylesheets\master\v1\Dojo_Common.xsl" />
+	
+	<xsl:template name="Field" match="Field[not(@visible)]">
 		<tr>
 			<td>
 				<label>
@@ -43,11 +45,12 @@
 			</td>
 		</tr>
 	</xsl:template>
-	<xsl:template name="Button" match="Button">
+	<xsl:template name="Button" match="Button[not(@visible)]">
 		<button>
 			<xsl:attribute name="data-dojo-type">
 				<xsl:text>dijit/form/Button</xsl:text>
 			</xsl:attribute>
+			<xsl:call-template name="SetCommonAttributes"/>
 			<xsl:attribute name="type">
 				<xsl:choose>
 					<xsl:when test="@type">

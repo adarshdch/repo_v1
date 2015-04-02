@@ -52,27 +52,7 @@
 
 		onSubmit: function (e/*Event?*/ /*===== e =====*/) {
 			
-			var formValues = this.getValues();
-			formValues._PageCode = this.sid;
-			formValues._steps = "Update";
-			
-			require(["dojo/request"], function (request) {
-				request("ttt", {
-					data: formValues,
-					method: "post",
-					handleAs: "json"
-				}).then(function (data) {
-					if (data.Status == 'Success')
-						alert(data.Message);
-					else
-						alert("Please try again");
-				}, function (err) {
-					alert("Error while posting data");
-				}, function (evt) {
-					// handle a progress event
-				});
-			});
-			return false;
+			return true;
 			// summary:
 			//		Callback when user submits the form.
 			// description:
@@ -90,6 +70,31 @@
 		submit: function (t) {
 			// summary:
 			//		programmatically submit form if and only if the `onSubmit` returns true
+
+			var formValues = this.getValues();
+			formValues._PageCode = this.sid;
+			formValues._Steps = "Update";
+
+			require(["dojo/request"], function (request) {
+				request("ttt", {
+					data: formValues,
+					method: "post",
+					handleAs: "json"
+				}).then(function (data) {
+					if (data.Status == 'Success')
+						alert(data.Message);
+					else
+						alert("Please try again");
+				}, function (err) {
+					alert("Error while posting data");
+				}, function (evt) {
+					// handle a progress event
+				});
+			});
+
+
+			return false;
+
 			if (!(this.onSubmit() === false)) {
 				this.containerNode.submit();
 			}

@@ -1,12 +1,11 @@
-﻿
-using System.Net.Http.Headers;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using SAB.BLL.Entities.Pages;
 using SAB.BLL.Manager;
 using SAB.Entities;
 using SAB.Infra.Entities;
+using SAB.Interface.Models;
 
 namespace SAB.Interface.Controllers
 {
@@ -19,6 +18,15 @@ namespace SAB.Interface.Controllers
 			_pageManager = thePageManager;
 		}
 
+		private void Initialize(CusRequest<PageRequest> theRequest)
+		{
+			if (string.IsNullOrWhiteSpace(Request.Params[Literals.RecordKey]) == false)
+			{
+				theRequest.Data.RecordKey = Request.Params[Literals.RecordKey];
+			}
+			
+		}
+
 		[HttpGet]
 		[ActionName("v1")]
 		public string Get(string pagecode)
@@ -27,12 +35,15 @@ namespace SAB.Interface.Controllers
 			{
 				Data = new PageRequest()
 				{
-					Operation = DbOperation.Select,
+					Step = "1",
 					OrgCode = "Master",
 					PageCode = pagecode,
-					ContentType = ResponseContentType.FullHtml
+					ContentType = ResponseContentType.FullHtml,
+					HttpMethod = Method.HttpGet
 				}
 			};
+
+			Initialize(aRequest);
 
 			var aResponse = new CusResponse<PageResponse>()
 			{

@@ -20,4 +20,10 @@ namespace SAB.Entities
 		Json
 	}
 
+	public enum Method
+	{
+		HttpGet,
+		HttpPost
+	}
+
 }

@@ -70,6 +70,7 @@
     <Compile Include="BLLUnityExtension.cs" />
     <Compile Include="Entities\Pages\XmlBasePageProcessor.cs" />
     <Compile Include="Entities\Pages\FacadePageProcessor.cs" />
+    <Compile Include="Entities\Pages\XmlPageAttributeProcessor.cs" />
     <Compile Include="Entities\Pages\XmlPageFormProcessor.cs" />
     <Compile Include="Entities\Pages\HtmlFormNodeProcessor.cs" />
     <Compile Include="Entities\Pages\IPageProcessor.cs" />
