@@ -12,7 +12,7 @@
 			</td>
 			<td>
 				<input>
-					<xsl:call-template name="SetFieldAttributes"/>
+					<xsl:call-template name="SetFieldCustomAttributes"/>
 					<xsl:attribute name="sid">
 						<xsl:value-of select="@sid"/>
 					</xsl:attribute>
@@ -35,27 +35,59 @@
 		</xsl:if>-->
 	</xsl:template>
 
-	<xsl:template name="Button" match="Button">
+	<xsl:template match="Buttons">
 		<tr>
 			<td></td>
 			<td colspan="*">
-				<button>
-					<xsl:attribute name="data-dojo-type">
-						<xsl:text>dijit/form/Button</xsl:text>
-					</xsl:attribute>
-					<xsl:attribute name="type">
-						<xsl:value-of select="@type"/>
-					</xsl:attribute>
-					<xsl:attribute name="operation">
-						<xsl:value-of select="@operation"/>
-					</xsl:attribute>
-					<xsl:value-of select="@label"/>
-				</button>
+				<xsl:apply-templates/>
 			</td>
 		</tr>
 	</xsl:template>
+	<xsl:template name="Button" match="Button">
+		<button>
+			<xsl:attribute name="data-dojo-type">
+				<xsl:text>dijit/form/Button</xsl:text>
+			</xsl:attribute>
+			<xsl:attribute name="type">
+				<xsl:choose>
+					<xsl:when test="@type">
+						<xsl:value-of select="@type"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:text>button</xsl:text>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:attribute>
+			<xsl:value-of select="@label"/>
+			<xsl:choose>
+				<xsl:when test="not(Script)">
+					<script type="dojo/on" data-dojo-event="click" data-dojo-args="evt">
+						this.getParent().submit();
+					</script>
+				</xsl:when>
+			</xsl:choose>
+			<xsl:apply-templates/>
+		</button>
+	</xsl:template>
 
-	<xsl:template name="SetFieldAttributes">
+	<xsl:template match="Script">
+		<script type="dojo/on" data-dojo-args="evt">
+			<xsl:attribute name="data-dojo-event">
+				<xsl:choose>
+					<xsl:when test="@event">
+						<xsl:value-of select="@event"/>		
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:text>click</xsl:text>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:attribute>
+			<xsl:value-of disable-output-escaping="yes" select="."/>
+		</script>
+	</xsl:template>
+								
+	
+	<xsl:template name="SetFieldCustomAttributes">
 		<xsl:choose>
 			<xsl:when test="@type='text'">
 				<xsl:attribute name="data-dojo-type">

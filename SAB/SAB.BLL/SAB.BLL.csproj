@@ -77,6 +77,7 @@
     <Compile Include="Entities\Pages\PageResponse.cs" />
     <Compile Include="Entities\Pages\IXmlPageNodeProcessor.cs" />
     <Compile Include="Entities\Pages\XmlPageNodeProcessor.cs" />
+    <Compile Include="Literals.cs" />
     <Compile Include="Manager\IPageManager.cs" />
     <Compile Include="Manager\PageManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

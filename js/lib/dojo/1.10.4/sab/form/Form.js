@@ -6,7 +6,7 @@
 	//"../../dijit/_Widget",
 	//"../../dijit/_TemplatedMixin",
 	//"../../dijit/form/_FormMixin",
-	"../../dijit/form/Form",
+	"../../dijit/form/Form"
 	//"../../dijit/layout/_ContentPaneResizeMixin"
 ], function (declare, domAttr, kernel, has, Form) {
 
@@ -53,8 +53,8 @@
 		onSubmit: function (e/*Event?*/ /*===== e =====*/) {
 			
 			var formValues = this.getValues();
-			formValues.Operation = "Insert";
-			var that = this;
+			formValues._PageCode = this.sid;
+			formValues._steps = "Update";
 			
 			require(["dojo/request"], function (request) {
 				request("ttt", {

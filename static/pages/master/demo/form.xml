@@ -2,6 +2,19 @@
 	<HtmlForm sid="Page" query="select" table="Page">
 		<Field sid="PageCode" type="text" label="Page Code" required="true"/>
 		<Field sid="RelativePath" type="text" label="Relative Path" required="true"/>
-		<Button type="submit" label="Submit" operation="Insert"/>
+		<Buttons>
+			<Button  label="Add" event="click">
+				<Script>
+					<![CDATA[
+					for(var count=0; count < 3; count++)
+					{
+						alert("Added");
+					}
+					]]>
+				</Script>
+			</Button>
+			<Button  label="Update" />
+			<Button  label="Delete" />
+		</Buttons>
 	</HtmlForm>
 </Form>

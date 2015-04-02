@@ -1,21 +1,22 @@
 ﻿<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<xsl:param name="OrgCode" select="OrgCode"/>
 	<xsl:param name="PageCode" select="PageCode"/>
-	<xsl:param name="ContentType" select="ContentType"/>
+	<xsl:param name="OutputType" select="OutputType"/>
 
-	<xsl:output omit-xml-declaration="yes" indent="yes" cdata-section-elements="" method="xml"/>
+	<xsl:output omit-xml-declaration="yes" indent="yes" method="xml" cdata-section-elements="Script"/>
 
 	<xsl:include href="http://localhost/static\stylesheets\master\v1\Dojo_Field.xsl" />
 
 	<xsl:template match="/">
 		<xsl:choose>
-			<xsl:when test="$ContentType='FullHtml'">
+			<xsl:when test="$OutputType='FullHtml'">
 				<xsl:call-template name="FullHtml"/>
 			</xsl:when>
-			<xsl:when test="$ContentType='FullXml'">
+			<xsl:when test="$OutputType='FullXml'">
 				<xsl:call-template name="FullXml"/>
 			</xsl:when>
 			<xsl:otherwise>
-				<xsl:value-of select="$ContentType"/>
+				<xsl:value-of select="$OutputType"/>
 				<xsl:text>:Invalid ContentType has been provided.</xsl:text>
 			</xsl:otherwise>
 		</xsl:choose>
@@ -61,6 +62,9 @@
 
 	<xsl:template name="HtmlForm" match="HtmlForm">
 		<div data-dojo-type="sab/form/Form" enctype="multipart/form-data" action="">
+			<xsl:attribute name="sid">
+				<xsl:value-of select="$PageCode"/>
+			</xsl:attribute>
 			<xsl:choose>
 				<xsl:when test="@display='inline'">
 					<xsl:apply-templates/>

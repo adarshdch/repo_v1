@@ -37,9 +37,9 @@ namespace SAB.BLL.Entities.Pages
 		private XsltArgumentList GetXsltArgumentList(CusRequest<PageRequest> theRequest)
 		{
 			var aXsltArgs = new XsltArgumentList();
-			aXsltArgs.AddParam("PageCode", "", theRequest.Data.OrgCode);
-			aXsltArgs.AddParam("OrgCode", "", theRequest.Data.PageCode);
-			aXsltArgs.AddParam("ContentType", "", theRequest.Data.ContentType.ToString());
+			aXsltArgs.AddParam(Literals.PageCode, "", theRequest.Data.PageCode);
+			aXsltArgs.AddParam(Literals.OrgCode, "", theRequest.Data.OrgCode);
+			aXsltArgs.AddParam(Literals.OutputType, "", theRequest.Data.ContentType.ToString());
 			return aXsltArgs;
 		}
 	}
