@@ -1,4 +1,6 @@
 ﻿
+using System;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
@@ -30,6 +32,10 @@ namespace SAB.BLL.Entities.Pages
 			for (var count = 0; count < aHtmlForms.Count(); count++)
 			{
 				var aTable = aDataSet.Tables[count];
+				if (aTable == null || aTable.Rows == null || aTable.Rows.Count == 0)
+				{
+					throw new FileNotFoundException("Record not found!");
+				}
 				var aHtmlFormFields = aHtmlForms[0].Elements("Field");
 				aHtmlFormFields.ForEach(theField => theField.SetAttributeValue("value", aTable.Rows[0][theField.Attribute("sid").Value]));
 			}
@@ -39,7 +45,7 @@ namespace SAB.BLL.Entities.Pages
 
 		private void ProcessHtmlFormQuery(XElement theHtmlForm)
 		{
-			if (theHtmlForm.Attribute("query") != null && string.IsNullOrWhiteSpace(theHtmlForm.Attribute("query").Value))
+			if (theHtmlForm.Attribute("query") != null )
 				return;
 
 			var aSelectQueryBuilder = new StringBuilder("SELECT ");

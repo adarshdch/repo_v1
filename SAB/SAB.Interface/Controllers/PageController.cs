@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Microsoft.Practices.ObjectBuilder2;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using SAB.BLL.Entities.Pages;
@@ -20,11 +21,9 @@ namespace SAB.Interface.Controllers
 
 		private void Initialize(CusRequest<PageRequest> theRequest)
 		{
-			if (string.IsNullOrWhiteSpace(Request.Params[Literals.RecordKey]) == false)
-			{
-				theRequest.Data.RecordKey = Request.Params[Literals.RecordKey];
-			}
-			
+			Request.QueryString.AllKeys.ForEach(theKey => theRequest.Data.Params[theKey] = Request.QueryString[theKey]);
+
+			theRequest.Data.RecordKey = theRequest.Data.Params[Literals.RecordKey];
 		}
 
 		[HttpGet]

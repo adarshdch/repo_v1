@@ -13,6 +13,7 @@ namespace SAB.BLL.Entities.Pages
 		public override bool Process(CusRequest<PageRequest> theRequest, CusResponse<PageResponse> theResponse)
 		{
 			XmlPageAttributeProcessor.FillAttributes(theRequest, theResponse);
+			VariableProcessor.Process(theRequest, theResponse);
 			IXmlPageNodeProcessor aXmlPageNodeProcessor = new HtmlFormNodeProcessor();
 			aXmlPageNodeProcessor.Process(theRequest, theResponse);
 

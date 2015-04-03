@@ -1,10 +1,13 @@
 ﻿<Form>
+	<Variables>
+		<Variable key="Key" source="querystring" />
+	</Variables>
 	<Workflow>
 		<Step sid="1" name="Add"/>
 		<Step sid="2" name="Update"/>
 		<Step sid="3" name="Delete"/>
 	</Workflow>
-	<HtmlForm sid="Page" query="select" table="Page">
+	<HtmlForm sid="Page" query="select PageCode, RelativePath From Page Where PageCode='[*Key*]'" table="Page">
 		<Field sid="PageCode" type="text" label="Page Code" required="true"/>
 		<Field sid="RelativePath" type="text" label="Relative Path" required="true"/>
 		<Buttons>

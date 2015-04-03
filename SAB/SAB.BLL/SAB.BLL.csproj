@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLLUnityExtension.cs" />
+    <Compile Include="Entities\Pages\VariableProcessor.cs" />
     <Compile Include="Entities\Pages\XmlBasePageProcessor.cs" />
     <Compile Include="Entities\Pages\FacadePageProcessor.cs" />
     <Compile Include="Entities\Pages\XmlPageAttributeProcessor.cs" />

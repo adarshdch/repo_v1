@@ -1,4 +1,7 @@
 ﻿
+using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 using SAB.Entities;
@@ -11,7 +14,10 @@ namespace SAB.BLL.Entities.Pages
 		public PageRequest()
 		{
 			OrgCode = "Master";
+			Params = new NameValueCollection();
 		}
+
+		public NameValueCollection Params { get; set; }
 
 		public string Step { get; set; }
 
