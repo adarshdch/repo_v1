@@ -1,13 +1,18 @@
 ﻿<Form>
 	<Variables>
-		<Variable key="Key" source="querystring" />
+		<Variable key="gid" source="querystring" />
 	</Variables>
 	<Workflow>
 		<Step sid="1" name="Add"/>
 		<Step sid="2" name="Update"/>
 		<Step sid="3" name="Delete"/>
 	</Workflow>
-	<HtmlForm sid="Page" query="select PageCode, RelativePath From Page Where PageCode='[*Key*]'" table="Page">
+	
+	<Queries>
+		<Query query="Update Page Set PageCode='[*form.RelativePath*]' where PageCode='[*gid*]'"  executeinsteps="2"/>
+	</Queries>
+	
+	<HtmlForm sid="Page" query="select PageCode, RelativePath From Page Where PageCode='[*gid*]'" table="Page">
 		<Field sid="PageCode" type="text" label="Page Code" required="true"/>
 		<Field sid="RelativePath" type="text" label="Relative Path" required="true"/>
 		<Buttons>

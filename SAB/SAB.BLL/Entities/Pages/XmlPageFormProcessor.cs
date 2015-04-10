@@ -14,6 +14,7 @@ namespace SAB.BLL.Entities.Pages
 		{
 			XmlPageAttributeProcessor.FillAttributes(theRequest, theResponse);
 			VariableProcessor.Process(theRequest, theResponse);
+			QueryProcessor.Process(theRequest, theResponse);
 			IXmlPageNodeProcessor aXmlPageNodeProcessor = new HtmlFormNodeProcessor();
 			aXmlPageNodeProcessor.Process(theRequest, theResponse);
 

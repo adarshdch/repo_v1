@@ -17,17 +17,22 @@ namespace SAB.BLL.Entities.Pages
 		public override bool Process(CusRequest<PageRequest> theRequest, CusResponse<PageResponse> theResponse)
 		{
 
-			if (string.IsNullOrWhiteSpace(theRequest.Data.RecordKey))
-			{
-				return true;
-			}
+			//if (string.IsNullOrWhiteSpace(theRequest.Data.RecordKey))
+			//{
+			//	return true;
+			//}
 
 			var aHtmlForms = theRequest.Data.PageDocument.XPathSelectElements("//HtmlForm").ToList();
 			
 			aHtmlForms.ForEach(ProcessHtmlFormQuery);
 		
 			//TODO Implement this for all HtmlForms
-			var aDataSet = OrgDatabase.SelectQuery(theRequest.Data.OrgCode, aHtmlForms.First().Attribute("query").Value);
+			var aSelectQuery = aHtmlForms.First().Attribute("query").Value;
+			if (aSelectQuery.Contains("[*"))
+			{
+				return true;
+			}
+			var aDataSet = OrgDatabase.SelectQuery(theRequest.Data.OrgCode, aSelectQuery);
 
 			for (var count = 0; count < aHtmlForms.Count(); count++)
 			{
